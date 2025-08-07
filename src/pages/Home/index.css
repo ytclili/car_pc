@@ -108,7 +108,7 @@
   justify-content: flex-start;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.06); */
   margin: 0 0 0 0;
   padding: 16px 16px 8px 16px;
   min-width: 0;

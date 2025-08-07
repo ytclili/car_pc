@@ -1,13 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts';
-import './index.css';
-import { Layout, Card, Row, Col } from 'antd';
-import SiderMenu from '../../components/SiderMenu';
+import React, { useEffect, useRef, useState } from "react";
+import * as echarts from "echarts";
+import "./index.css";
+import { Layout, Card, Row, Col } from "antd";
+import SiderMenu from "../../components/SiderMenu";
 
 const { Content } = Layout;
 
+const useEchartResize = (chartRef: React.RefObject<HTMLDivElement | null>, option: any) => {
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const myChart = echarts.init(chartRef.current);
+    myChart.setOption(option);
+    const handleResize = () => {
+      myChart.resize();
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      myChart.dispose();
+    };
+  }, [chartRef, option]);
+};
+
 const Home = () => {
-  const [selectedKey, setSelectedKey] = useState('dashboard');
+  const [selectedKey, setSelectedKey] = useState("dashboard");
   // 订单金额柱状图
   const orderAmountChartRef = useRef<HTMLDivElement>(null);
   // 订单数折线图
@@ -17,126 +33,102 @@ const Home = () => {
   // 推客佣金柱状图
   const referrerCommissionChartRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (orderAmountChartRef.current) {
-      const myChart = echarts.init(orderAmountChartRef.current);
-      myChart.setOption({
-        tooltip: { trigger: 'axis' },
-        grid: { left: 40, right: 20, bottom: 40, top: 30 },
-        xAxis: {
-          type: 'category',
-          data: ['03-01', '03-05', '03-10', '03-15', '03-20', '03-25', '03-30'],
-        },
-        yAxis: { type: 'value' },
-        series: [
-          {
-            data: [3200, 4800, 3500, 5000, 6000, 7000, 7500],
-            type: 'bar',
-            name: '订单金额',
-            color: '#00BD97',
-            barWidth: 32,
-            itemStyle: { borderRadius: [8, 8, 0, 0] },
-          },
-        ],
-      });
-      return () => myChart.dispose();
-    }
-  }, []);
+  useEchartResize(orderAmountChartRef, {
+    tooltip: { trigger: "axis" },
+    grid: { left: 40, right: 20, bottom: 40, top: 30 },
+    xAxis: {
+      type: "category",
+      data: ["03-01", "03-05", "03-10", "03-15", "03-20", "03-25", "03-30"],
+    },
+    yAxis: { type: "value" },
+    series: [
+      {
+        data: [3200, 4800, 3500, 5000, 6000, 7000, 7500],
+        type: "bar",
+        name: "订单金额",
+        color: "#00BD97",
+        barWidth: 32,
+        itemStyle: { borderRadius: [8, 8, 0, 0] },
+      },
+    ],
+  });
 
-  useEffect(() => {
-    if (orderCountChartRef.current) {
-      const myChart = echarts.init(orderCountChartRef.current);
-      myChart.setOption({
-        tooltip: { trigger: 'axis' },
-        grid: { left: 40, right: 20, bottom: 40, top: 30 },
-        xAxis: {
-          type: 'category',
-          data: ['03-01', '03-05', '03-10', '03-15', '03-20', '03-25', '03-30'],
-        },
-        yAxis: { type: 'value' },
-        series: [
-          {
-            data: [120, 180, 150, 200, 220, 260, 300],
-            type: 'line',
-            name: '订单数',
-            color: '#1890ff',
-            smooth: true,
-            areaStyle: { color: 'rgba(24,144,255,0.08)' },
-            symbol: 'circle',
-            symbolSize: 8,
-            lineStyle: { width: 3 },
-          },
-        ],
-      });
-      return () => myChart.dispose();
-    }
-  }, []);
+  useEchartResize(orderCountChartRef, {
+    tooltip: { trigger: "axis" },
+    grid: { left: 40, right: 20, bottom: 40, top: 30 },
+    xAxis: {
+      type: "category",
+      data: ["03-01", "03-05", "03-10", "03-15", "03-20", "03-25", "03-30"],
+    },
+    yAxis: { type: "value" },
+    series: [
+      {
+        data: [120, 180, 150, 200, 220, 260, 300],
+        type: "line",
+        name: "订单数",
+        color: "#1890ff",
+        smooth: true,
+        areaStyle: { color: "rgba(24,144,255,0.08)" },
+        symbol: "circle",
+        symbolSize: 8,
+        lineStyle: { width: 3 },
+      },
+    ],
+  });
 
-  useEffect(() => {
-    if (referrerUserChartRef.current) {
-      const myChart = echarts.init(referrerUserChartRef.current);
-      myChart.setOption({
-        tooltip: { trigger: 'axis' },
-        grid: { left: 40, right: 20, bottom: 40, top: 30 },
-        xAxis: {
-          type: 'category',
-          data: ['03-01', '03-05', '03-10', '03-15', '03-20', '03-25', '03-30'],
-        },
-        yAxis: { type: 'value' },
-        series: [
-          {
-            data: [80, 120, 100, 150, 180, 200, 210],
-            type: 'line',
-            name: '新用户',
-            color: '#00BD97',
-            smooth: true,
-            areaStyle: { color: 'rgba(0,189,151,0.08)' },
-            symbol: 'circle',
-            symbolSize: 8,
-            lineStyle: { width: 3 },
-          },
-        ],
-      });
-      return () => myChart.dispose();
-    }
-  }, []);
+  useEchartResize(referrerUserChartRef, {
+    tooltip: { trigger: "axis" },
+    grid: { left: 40, right: 20, bottom: 40, top: 30 },
+    xAxis: {
+      type: "category",
+      data: ["03-01", "03-05", "03-10", "03-15", "03-20", "03-25", "03-30"],
+    },
+    yAxis: { type: "value" },
+    series: [
+      {
+        data: [80, 120, 100, 150, 180, 200, 210],
+        type: "line",
+        name: "新用户",
+        color: "#00BD97",
+        smooth: true,
+        areaStyle: { color: "rgba(0,189,151,0.08)" },
+        symbol: "circle",
+        symbolSize: 8,
+        lineStyle: { width: 3 },
+      },
+    ],
+  });
 
-  useEffect(() => {
-    if (referrerCommissionChartRef.current) {
-      const myChart = echarts.init(referrerCommissionChartRef.current);
-      myChart.setOption({
-        tooltip: { trigger: 'axis' },
-        grid: { left: 40, right: 20, bottom: 40, top: 30 },
-        xAxis: {
-          type: 'category',
-          data: ['03-01', '03-05', '03-10', '03-15', '03-20', '03-25', '03-30'],
-        },
-        yAxis: { type: 'value' },
-        series: [
-          {
-            data: [12000, 18000, 15000, 20000, 22000, 26000, 30000],
-            type: 'bar',
-            name: '佣金',
-            color: '#faad14',
-            barWidth: 32,
-            itemStyle: { borderRadius: [8, 8, 0, 0] },
-          },
-        ],
-      });
-      return () => myChart.dispose();
-    }
-  }, []);
+  useEchartResize(referrerCommissionChartRef, {
+    tooltip: { trigger: "axis" },
+    grid: { left: 40, right: 20, bottom: 40, top: 30 },
+    xAxis: {
+      type: "category",
+      data: ["03-01", "03-05", "03-10", "03-15", "03-20", "03-25", "03-30"],
+    },
+    yAxis: { type: "value" },
+    series: [
+      {
+        data: [12000, 18000, 15000, 20000, 22000, 26000, 30000],
+        type: "bar",
+        name: "佣金",
+        color: "#faad14",
+        barWidth: 32,
+        itemStyle: { borderRadius: [8, 8, 0, 0] },
+      },
+    ],
+  });
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: "100vh" }}>
       <SiderMenu selectedKey={selectedKey} onSelect={setSelectedKey} />
       <Layout>
-        <Content style={{ padding: '32px 24px', background: '#f5f8fa' }}>
+        <Content style={{ padding: "32px 24px", background: "#f5f8fa" }}>
           <div className="dashboard-header">
             <div className="dashboard-title">首页 / 数据看板</div>
           </div>
           <Row gutter={[24, 24]}>
-            <Col span={24}>
+            <Col  span={12} style={{ marginBottom: 12 }}>
               <Card
                 title={<span>订单看板</span>}
                 extra={<a href="#">查看更多</a>}
@@ -146,11 +138,15 @@ const Home = () => {
                 <Row gutter={16} className="card-stats-row">
                   <Col span={6} className="card-stat">
                     <div className="stat-label">今日拼单订单</div>
-                    <div className="stat-value main">124 <span className="stat-rate up">↑6%</span></div>
+                    <div className="stat-value main">
+                      124 <span className="stat-rate up">↑6%</span>
+                    </div>
                   </Col>
                   <Col span={6} className="card-stat">
                     <div className="stat-label">本月累计订单</div>
-                    <div className="stat-value main green">2,567 <span className="stat-rate up">↑12%</span></div>
+                    <div className="stat-value main green">
+                      2,567 <span className="stat-rate up">↑12%</span>
+                    </div>
                   </Col>
                   <Col span={6} className="card-stat">
                     <div className="stat-label">待购车订单</div>
@@ -161,19 +157,52 @@ const Home = () => {
                     <div className="stat-value red">35</div>
                   </Col>
                 </Row>
-                <Row gutter={16} className="card-charts-row">
-                  <Col span={12} className="card-chart-box">
-                    <div className="chart-title">近30天订单金额趋势</div>
-                    <div ref={orderAmountChartRef} className="chart" />
-                  </Col>
-                  <Col span={12} className="card-chart-box">
-                    <div className="chart-title">近30天订单数趋势</div>
-                    <div ref={orderCountChartRef} className="chart" />
-                  </Col>
-                </Row>
+                <Col span={24} className="card-chart-box">
+                  <div className="chart-title">近30天订单金额趋势</div>
+                  <div ref={orderAmountChartRef} className="chart" />
+                </Col>
               </Card>
             </Col>
-            <Col span={24}>
+            <Col span={12} style={{ marginBottom: 12 }}>
+              <Card
+                title={<span>用户看板</span>}
+                extra={<a href="#">查看更多</a>}
+                className="dashboard-card"
+                bordered={false}
+              >
+                <Row gutter={16} className="card-stats-row">
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">今日拼单订单</div>
+                    <div className="stat-value main">
+                      124 <span className="stat-rate up">↑6%</span>
+                    </div>
+                  </Col>
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">本月累计订单</div>
+                    <div className="stat-value main green">
+                      2,567 <span className="stat-rate up">↑12%</span>
+                    </div>
+                  </Col>
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">待购车订单</div>
+                    <div className="stat-value">46</div>
+                  </Col>
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">待审核订单</div>
+                    <div className="stat-value red">35</div>
+                  </Col>
+                </Row>
+
+                <Col span={24} className="card-chart-box">
+                  <div className="chart-title">近30天订单数趋势</div>
+                  <div ref={orderCountChartRef} className="chart" />
+                </Col>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row gutter={[24, 24]}>
+            <Col span={12} style={{ marginBottom: 12 }}>
               <Card
                 title={<span>推客看板</span>}
                 extra={<a href="#">查看更多</a>}
@@ -187,7 +216,9 @@ const Home = () => {
                   </Col>
                   <Col span={6} className="card-stat">
                     <div className="stat-label">本月新增推客</div>
-                    <div className="stat-value main green">97 <span className="stat-rate up">↑23%</span></div>
+                    <div className="stat-value main green">
+                      97 <span className="stat-rate up">↑23%</span>
+                    </div>
                   </Col>
                   <Col span={6} className="card-stat">
                     <div className="stat-label">本月活跃推客</div>
@@ -198,16 +229,44 @@ const Home = () => {
                     <div className="stat-value orange">¥145,892</div>
                   </Col>
                 </Row>
-                <Row gutter={16} className="card-charts-row">
-                  <Col span={12} className="card-chart-box">
-                    <div className="chart-title">近30天新用户趋势</div>
-                    <div ref={referrerUserChartRef} className="chart" />
+                <Col span={24} className="card-chart-box">
+                  <div className="chart-title">近30天新用户趋势</div>
+                  <div ref={referrerUserChartRef} className="chart" />
+                </Col>
+              </Card>
+            </Col>
+            <Col span={12} style={{ marginBottom: 12 }}>
+              <Card
+                title={<span>财务看板</span>}
+                extra={<a href="#">查看更多</a>}
+                className="dashboard-card"
+                bordered={false}
+              >
+                <Row gutter={16} className="card-stats-row">
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">总推客数</div>
+                    <div className="stat-value main">1,284</div>
                   </Col>
-                  <Col span={12} className="card-chart-box">
-                    <div className="chart-title">近30天佣金趋势</div>
-                    <div ref={referrerCommissionChartRef} className="chart" />
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">本月新增推客</div>
+                    <div className="stat-value main green">
+                      97 <span className="stat-rate up">↑23%</span>
+                    </div>
+                  </Col>
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">本月活跃推客</div>
+                    <div className="stat-value">586</div>
+                  </Col>
+                  <Col span={6} className="card-stat">
+                    <div className="stat-label">已结算佣金</div>
+                    <div className="stat-value orange">¥145,892</div>
                   </Col>
                 </Row>
+
+                <Col span={24} className="card-chart-box">
+                  <div className="chart-title">近30天佣金趋势</div>
+                  <div ref={referrerCommissionChartRef} className="chart" />
+                </Col>
               </Card>
             </Col>
           </Row>
