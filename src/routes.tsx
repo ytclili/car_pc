@@ -12,10 +12,12 @@ const routes = [
   {
     path: '/home',
     element: <Home />,
+    breadcrumb: '数据看板',
   },
   {
     path: '/user-management',
     element: <UserManagement />,
+    breadcrumb: '用户管理',
   },
   {
     path: '/',

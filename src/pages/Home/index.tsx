@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import "./index.css";
 import { Card, Row, Col } from "antd";
@@ -140,9 +140,6 @@ const Home = () => {
       onSettings={handleSettings}
       onProfile={handleProfile}
     >
-      <div className="dashboard-header">
-        <div className="dashboard-title">首页 / 数据看板</div>
-      </div>
       <Row gutter={[24, 24]}>
         <Col  span={12} style={{ marginBottom: 12 }}>
           <Card

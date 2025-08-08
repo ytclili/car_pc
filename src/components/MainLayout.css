@@ -12,7 +12,8 @@
 }
 
 .content-area {
-  padding: 24px;
+  /* 预留顶部固定 Header(64) + Header margin(12) + Breadcrumb(56) + 间距 */
+  padding: 160px 24px 24px;
   flex: 1;
   overflow-y: auto;
 }
@@ -20,12 +21,10 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
   .content-area {
-    padding: 16px;
+    /* 移动端顶部留白：Header(64) + Header margin(8) + Breadcrumb(52) + 间距 */
+    padding: 144px 16px 16px;
   }
-  
-  .main-content {
-    margin-left: 0;
-  }
+  .main-content { margin-left: 0; }
 }
 
 /* 确保侧边栏在左侧 */
@@ -39,6 +38,19 @@
   border-right: 1px solid #f0f0f0;
 }
 
+/* Breadcrumb bar */
+.breadcrumb-bar {
+  background: #fff;
+  padding: 12px 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  position: fixed;
+  top: 64px; /* 紧贴固定 Header 下方 */
+  left: 220px; /* 与侧边栏宽度对齐 */
+  right: 0;
+  z-index: 995;
+}
+
 /* 移动端适配 */
 @media (max-width: 768px) {
   .main-layout .ant-layout-sider {
@@ -50,5 +62,10 @@
   
   .main-layout .ant-layout-sider.ant-layout-sider-collapsed {
     left: 0;
+  }
+
+  .breadcrumb-bar {
+    left: 0; /* 移动端侧栏折叠时，面包屑占满宽度 */
+    top: 64px;
   }
 }

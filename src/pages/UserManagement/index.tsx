@@ -146,10 +146,7 @@ const UserManagement: React.FC = () => {
       onSettings={handleSettings}
       onProfile={handleProfile}
     >
-      <div className="page-header">
-        <div className="page-title">用户管理</div>
-        <div className="page-description">管理系统用户信息，包括用户资料、权限设置等</div>
-      </div>
+      {/* 统一面包屑替代页面头部 */}
 
       <Card className="user-management-card">
         <div className="card-header">
@@ -188,3 +185,4 @@ const UserManagement: React.FC = () => {
 };
 
 export default UserManagement;
+

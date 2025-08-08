@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout } from 'antd';
 import HeaderBar from './HeaderBar';
+import Breadcrumbs from './Breadcrumbs';
 import SiderMenu from './SiderMenu';
 import './MainLayout.css';
 
@@ -44,8 +45,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           onProfile={onProfile}
         />
         
-        {/* 主内容区域 */}
+        {/* 面包屑 + 主内容区域 */}
         <Content className="content-area">
+          <Breadcrumbs />
           {children}
         </Content>
       </Layout>

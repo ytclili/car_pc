@@ -5,14 +5,14 @@
   background: #fff;
   border-bottom: 1px solid #f0f0f0;
   padding: 0 24px;
-  height: 64px;
+  height: 64px; /* 与侧边 Logo 区保持一致 */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  /* 移除固定定位 */
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
-  /* right: 0; */
-  /* z-index: 1000; */
+  position: fixed;
+  top: 0;
+  left: 220px; /* 与固定侧边栏宽度一致 */
+  right: 0;
+  z-index: 1000;
+  margin-bottom: 12px; /* 视觉上的向下间距 */
 }
 
 .header-left {
@@ -138,6 +138,7 @@
 @media (max-width: 768px) {
   .header-bar {
     padding: 0 16px;
+    left: 0; /* 移动端侧边栏折叠时顶部导航占满宽度 */
   }
   
   .logo-text {
