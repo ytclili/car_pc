@@ -1,0 +1,54 @@
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+}
+
+.main-content {
+  background: #f5f8fa;
+  flex: 1;
+  margin-left: 220px; /* 侧边栏宽度 */
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .content-area {
+    padding: 16px;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* 确保侧边栏在左侧 */
+.main-layout .ant-layout-sider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  background: #fff;
+  border-right: 1px solid #f0f0f0;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .main-layout .ant-layout-sider {
+    position: fixed;
+    top: 0;
+    left: -220px; /* 默认隐藏 */
+    transition: left 0.3s ease;
+  }
+  
+  .main-layout .ant-layout-sider.ant-layout-sider-collapsed {
+    left: 0;
+  }
+}

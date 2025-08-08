@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import "./index.css";
-import { Layout, Card, Row, Col } from "antd";
-import SiderMenu from "../../components/SiderMenu";
-
-const { Content } = Layout;
+import { Card, Row, Col } from "antd";
+import MainLayout from "../../components/MainLayout";
 
 const useEchartResize = (chartRef: React.RefObject<HTMLDivElement | null>, option: any) => {
   useEffect(() => {
@@ -23,7 +21,6 @@ const useEchartResize = (chartRef: React.RefObject<HTMLDivElement | null>, optio
 };
 
 const Home = () => {
-  const [selectedKey, setSelectedKey] = useState("dashboard");
   // 订单金额柱状图
   const orderAmountChartRef = useRef<HTMLDivElement>(null);
   // 订单数折线图
@@ -119,160 +116,177 @@ const Home = () => {
     ],
   });
 
+  // 头部事件处理函数
+  const handleLogout = () => {
+    console.log('用户退出登录');
+    // 这里可以添加退出登录的逻辑
+  };
+
+  const handleSettings = () => {
+    console.log('打开系统设置');
+    // 这里可以添加打开设置页面的逻辑
+  };
+
+  const handleProfile = () => {
+    console.log('打开个人资料');
+    // 这里可以添加打开个人资料页面的逻辑
+  };
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <SiderMenu selectedKey={selectedKey} onSelect={setSelectedKey} />
-      <Layout>
-        <Content style={{ padding: "32px 24px", background: "#f5f8fa" }}>
-          <div className="dashboard-header">
-            <div className="dashboard-title">首页 / 数据看板</div>
-          </div>
-          <Row gutter={[24, 24]}>
-            <Col  span={12} style={{ marginBottom: 12 }}>
-              <Card
-                title={<span>订单看板</span>}
-                extra={<a href="#">查看更多</a>}
-                className="dashboard-card"
-                bordered={false}
-              >
-                <Row gutter={16} className="card-stats-row">
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">今日拼单订单</div>
-                    <div className="stat-value main">
-                      124 <span className="stat-rate up">↑6%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月累计订单</div>
-                    <div className="stat-value main green">
-                      2,567 <span className="stat-rate up">↑12%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">待购车订单</div>
-                    <div className="stat-value">46</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">待审核订单</div>
-                    <div className="stat-value red">35</div>
-                  </Col>
-                </Row>
-                <Col span={24} className="card-chart-box">
-                  <div className="chart-title">近30天订单金额趋势</div>
-                  <div ref={orderAmountChartRef} className="chart" />
-                </Col>
-              </Card>
+    <MainLayout
+      userName="管理员"
+      notificationCount={3}
+      onLogout={handleLogout}
+      onSettings={handleSettings}
+      onProfile={handleProfile}
+    >
+      <div className="dashboard-header">
+        <div className="dashboard-title">首页 / 数据看板</div>
+      </div>
+      <Row gutter={[24, 24]}>
+        <Col  span={12} style={{ marginBottom: 12 }}>
+          <Card
+            title={<span>订单看板</span>}
+            extra={<a href="#">查看更多</a>}
+            className="dashboard-card"
+            bordered={false}
+          >
+            <Row gutter={16} className="card-stats-row">
+              <Col span={6} className="card-stat">
+                <div className="stat-label">今日拼单订单</div>
+                <div className="stat-value main">
+                  124 <span className="stat-rate up">↑6%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月累计订单</div>
+                <div className="stat-value main green">
+                  2,567 <span className="stat-rate up">↑12%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">待购车订单</div>
+                <div className="stat-value">46</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">待审核订单</div>
+                <div className="stat-value red">35</div>
+              </Col>
+            </Row>
+            <Col span={24} className="card-chart-box">
+              <div className="chart-title">近30天订单金额趋势</div>
+              <div ref={orderAmountChartRef} className="chart" />
             </Col>
-            <Col span={12} style={{ marginBottom: 12 }}>
-              <Card
-                title={<span>用户看板</span>}
-                extra={<a href="#">查看更多</a>}
-                className="dashboard-card"
-                bordered={false}
-              >
-                <Row gutter={16} className="card-stats-row">
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">今日拼单订单</div>
-                    <div className="stat-value main">
-                      124 <span className="stat-rate up">↑6%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月累计订单</div>
-                    <div className="stat-value main green">
-                      2,567 <span className="stat-rate up">↑12%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">待购车订单</div>
-                    <div className="stat-value">46</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">待审核订单</div>
-                    <div className="stat-value red">35</div>
-                  </Col>
-                </Row>
+          </Card>
+        </Col>
+        <Col span={12} style={{ marginBottom: 12 }}>
+          <Card
+            title={<span>用户看板</span>}
+            extra={<a href="#">查看更多</a>}
+            className="dashboard-card"
+            bordered={false}
+          >
+            <Row gutter={16} className="card-stats-row">
+              <Col span={6} className="card-stat">
+                <div className="stat-label">今日拼单订单</div>
+                <div className="stat-value main">
+                  124 <span className="stat-rate up">↑6%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月累计订单</div>
+                <div className="stat-value main green">
+                  2,567 <span className="stat-rate up">↑12%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">待购车订单</div>
+                <div className="stat-value">46</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">待审核订单</div>
+                <div className="stat-value red">35</div>
+              </Col>
+            </Row>
 
-                <Col span={24} className="card-chart-box">
-                  <div className="chart-title">近30天订单数趋势</div>
-                  <div ref={orderCountChartRef} className="chart" />
-                </Col>
-              </Card>
+            <Col span={24} className="card-chart-box">
+              <div className="chart-title">近30天订单数趋势</div>
+              <div ref={orderCountChartRef} className="chart" />
             </Col>
-          </Row>
+          </Card>
+        </Col>
+      </Row>
 
-          <Row gutter={[24, 24]}>
-            <Col span={12} style={{ marginBottom: 12 }}>
-              <Card
-                title={<span>推客看板</span>}
-                extra={<a href="#">查看更多</a>}
-                className="dashboard-card"
-                bordered={false}
-              >
-                <Row gutter={16} className="card-stats-row">
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">总推客数</div>
-                    <div className="stat-value main">1,284</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月新增推客</div>
-                    <div className="stat-value main green">
-                      97 <span className="stat-rate up">↑23%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月活跃推客</div>
-                    <div className="stat-value">586</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">已结算佣金</div>
-                    <div className="stat-value orange">¥145,892</div>
-                  </Col>
-                </Row>
-                <Col span={24} className="card-chart-box">
-                  <div className="chart-title">近30天新用户趋势</div>
-                  <div ref={referrerUserChartRef} className="chart" />
-                </Col>
-              </Card>
+      <Row gutter={[24, 24]}>
+        <Col span={12} style={{ marginBottom: 12 }}>
+          <Card
+            title={<span>推客看板</span>}
+            extra={<a href="#">查看更多</a>}
+            className="dashboard-card"
+            bordered={false}
+          >
+            <Row gutter={16} className="card-stats-row">
+              <Col span={6} className="card-stat">
+                <div className="stat-label">总推客数</div>
+                <div className="stat-value main">1,284</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月新增推客</div>
+                <div className="stat-value main green">
+                  97 <span className="stat-rate up">↑23%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月活跃推客</div>
+                <div className="stat-value">586</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">已结算佣金</div>
+                <div className="stat-value orange">¥145,892</div>
+              </Col>
+            </Row>
+            <Col span={24} className="card-chart-box">
+              <div className="chart-title">近30天新用户趋势</div>
+              <div ref={referrerUserChartRef} className="chart" />
             </Col>
-            <Col span={12} style={{ marginBottom: 12 }}>
-              <Card
-                title={<span>财务看板</span>}
-                extra={<a href="#">查看更多</a>}
-                className="dashboard-card"
-                bordered={false}
-              >
-                <Row gutter={16} className="card-stats-row">
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">总推客数</div>
-                    <div className="stat-value main">1,284</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月新增推客</div>
-                    <div className="stat-value main green">
-                      97 <span className="stat-rate up">↑23%</span>
-                    </div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">本月活跃推客</div>
-                    <div className="stat-value">586</div>
-                  </Col>
-                  <Col span={6} className="card-stat">
-                    <div className="stat-label">已结算佣金</div>
-                    <div className="stat-value orange">¥145,892</div>
-                  </Col>
-                </Row>
+          </Card>
+        </Col>
+        <Col span={12} style={{ marginBottom: 12 }}>
+          <Card
+            title={<span>财务看板</span>}
+            extra={<a href="#">查看更多</a>}
+            className="dashboard-card"
+            bordered={false}
+          >
+            <Row gutter={16} className="card-stats-row">
+              <Col span={6} className="card-stat">
+                <div className="stat-label">总推客数</div>
+                <div className="stat-value main">1,284</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月新增推客</div>
+                <div className="stat-value main green">
+                  97 <span className="stat-rate up">↑23%</span>
+                </div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">本月活跃推客</div>
+                <div className="stat-value">586</div>
+              </Col>
+              <Col span={6} className="card-stat">
+                <div className="stat-label">已结算佣金</div>
+                <div className="stat-value orange">¥145,892</div>
+              </Col>
+            </Row>
 
-                <Col span={24} className="card-chart-box">
-                  <div className="chart-title">近30天佣金趋势</div>
-                  <div ref={referrerCommissionChartRef} className="chart" />
-                </Col>
-              </Card>
+            <Col span={24} className="card-chart-box">
+              <div className="chart-title">近30天佣金趋势</div>
+              <div ref={referrerCommissionChartRef} className="chart" />
             </Col>
-          </Row>
-        </Content>
-      </Layout>
-    </Layout>
+          </Card>
+        </Col>
+      </Row>
+    </MainLayout>
   );
 };
 

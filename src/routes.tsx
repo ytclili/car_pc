@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import UserManagement from './pages/UserManagement';
 import { Navigate } from 'react-router-dom';
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
   {
     path: '/home',
     element: <Home />,
+  },
+  {
+    path: '/user-management',
+    element: <UserManagement />,
   },
   {
     path: '/',
