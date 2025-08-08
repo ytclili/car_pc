@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import UserManagement from './pages/UserManagement';
+import BrandManagement from './pages/BrandManagement';
 import { Navigate } from 'react-router-dom';
 
 const routes = [
@@ -18,6 +19,11 @@ const routes = [
     path: '/user-management',
     element: <UserManagement />,
     breadcrumb: '用户管理',
+  },
+  {
+    path: '/car-management',
+    element: <BrandManagement />,
+    breadcrumb: '车型管理',
   },
   {
     path: '/',

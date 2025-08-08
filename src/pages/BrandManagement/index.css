@@ -1,0 +1,243 @@
+.brand-management-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02), 0px 1px 6px -1px rgba(0, 0, 0, 0.02), 0px 1px 2px 0px rgba(0, 0, 0, 0.03);
+  border: 1px solid #F0F0F0;
+}
+
+.search-label {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.brand-list-card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02), 0px 1px 6px -1px rgba(0, 0, 0, 0.02), 0px 1px 2px 0px rgba(0, 0, 0, 0.03);
+  border: 1px solid #F0F0F0;
+}
+
+.brand-list-card .ant-card-head {
+  border-bottom: 1px solid #F0F0F0;
+  padding: 12px 24px;
+}
+
+.brand-list-card .ant-card-head-title {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+}
+
+.brand-list-card .ant-card-body {
+  padding: 0;
+}
+
+.brand-table {
+  border-radius: 8px 8px 0 0;
+}
+
+.brand-table .ant-table-thead > tr > th {
+  background: #FAFAFA;
+  border-bottom: 1px solid #F0F0F0;
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px;
+  text-align: left;
+}
+
+.brand-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #F0F0F0;
+  padding: 16px;
+  text-align: left;
+}
+
+.brand-table .ant-table-tbody > tr:hover > td {
+  background: #F5F8FA;
+}
+
+.brand-table-row {
+  transition: background-color 0.3s ease;
+}
+
+/* 状态标签样式 */
+.brand-table .ant-tag {
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1px 7px;
+  line-height: 20px;
+}
+
+.brand-table .ant-tag-success {
+  background: #F6FFED;
+  border-color: #B7EB8F;
+  color: #52C41A;
+}
+
+.brand-table .ant-tag-default {
+  background: #FAFAFA;
+  border-color: #D9D9D9;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+/* 操作按钮样式 */
+.brand-table .ant-btn-text {
+  padding: 5px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 22px;
+  transition: all 0.3s ease;
+}
+
+.brand-table .ant-btn-text:hover {
+  background: rgba(0, 189, 151, 0.1);
+}
+
+.brand-table .ant-btn-text.ant-btn-dangerous:hover {
+  background: rgba(255, 77, 79, 0.1);
+}
+
+/* 分页容器 */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 1px solid #F0F0F0;
+}
+
+.total-count {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.pagination-container .ant-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-container .ant-pagination-item {
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+  min-width: 32px;
+  height: 32px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.pagination-container .ant-pagination-item-active {
+  border-color: #00BD97;
+  background: #FFFFFF;
+}
+
+.pagination-container .ant-pagination-item-active a {
+  color: #00BD97;
+  font-weight: 600;
+}
+
+.pagination-container .ant-pagination-prev,
+.pagination-container .ant-pagination-next {
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+  min-width: 32px;
+  height: 32px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.pagination-container .ant-pagination-options {
+  margin-left: 8px;
+}
+
+.pagination-container .ant-select {
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+}
+
+/* 搜索区域样式 */
+.search-card .ant-card-body {
+  padding: 24px;
+}
+
+.search-card .ant-input-search {
+  border-radius: 6px;
+}
+
+.search-card .ant-input-search .ant-input {
+  border-radius: 6px;
+  border: 1px solid #D9D9D9;
+}
+
+.search-card .ant-input-search .ant-input:focus,
+.search-card .ant-input-search .ant-input:hover {
+  border-color: #00BD97;
+  box-shadow: 0 0 0 2px rgba(0, 189, 151, 0.2);
+}
+
+.search-card .ant-btn {
+  border-radius: 6px;
+  height: 32px;
+  padding: 4px 16px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.search-card .ant-btn-primary {
+  background: #00BD97;
+  border-color: #00BD97;
+  box-shadow: 0px 2px 0px 0px rgba(5, 145, 255, 0.10);
+}
+
+.search-card .ant-btn-primary:hover {
+  background: #00A085;
+  border-color: #00A085;
+}
+
+.search-card .ant-btn-default {
+  border: 1px solid #D9D9D9;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.02);
+}
+
+.search-card .ant-btn-default:hover {
+  border-color: #00BD97;
+  color: #00BD97;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .search-card .ant-card-body {
+    padding: 16px;
+  }
+  
+  .brand-list-card .ant-card-head {
+    padding: 12px 16px;
+  }
+  
+  .brand-table .ant-table-thead > tr > th,
+  .brand-table .ant-table-tbody > tr > td {
+    padding: 12px;
+  }
+  
+  .pagination-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .total-count {
+    margin-left: 0;
+  }
+}
+
+

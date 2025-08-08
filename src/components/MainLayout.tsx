@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout } from 'antd';
 import HeaderBar from './HeaderBar';
 import Breadcrumbs from './Breadcrumbs';
@@ -26,12 +26,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   onSettings,
   onProfile,
 }) => {
-  const [selectedKey, setSelectedKey] = useState('dashboard');
-
   return (
     <Layout className="main-layout">
       {/* 侧边栏 */}
-      <SiderMenu selectedKey={selectedKey} onSelect={setSelectedKey} />
+      <SiderMenu />
       
       {/* 右侧内容区域 */}
       <Layout className="main-content">

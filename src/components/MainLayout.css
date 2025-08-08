@@ -13,7 +13,7 @@
 
 .content-area {
   /* 预留顶部固定 Header(64) + Header margin(12) + Breadcrumb(56) + 间距 */
-  padding: 160px 24px 24px;
+  padding:  24px 24px;
   flex: 1;
   overflow-y: auto;
 }

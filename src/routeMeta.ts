@@ -2,6 +2,8 @@
 export const breadcrumbNameMap: Record<string, string> = {
   '/home': '数据看板',
   '/user-management': '用户管理',
+  '/car-management': '车型管理',
+  '/brand-control': '品牌管控',
 };
 
 

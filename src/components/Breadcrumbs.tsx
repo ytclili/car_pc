@@ -27,6 +27,15 @@ const Breadcrumbs: React.FC = () => {
       items.push({ path: url, title: nameMap[url] || '数据看板' });
       return;
     }
+    
+    // Handle nested routes - add parent menu item for brand management
+    if (url === '/car-management' || url === '/brand-control') {
+      // Add "品牌管理" as parent breadcrumb
+      if (!items.find(item => item.path === '/brand')) {
+        items.push({ path: '/brand', title: '品牌管理' });
+      }
+    }
+    
     items.push({ path: url, title: nameMap[url] || url });
   });
 
