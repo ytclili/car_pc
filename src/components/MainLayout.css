@@ -47,7 +47,7 @@
   position: fixed;
   top: 64px; /* 紧贴固定 Header 下方 */
   left: 220px; /* 与侧边栏宽度对齐 */
-  right: 0;
+  right: 0; 
   z-index: 995;
 }
 

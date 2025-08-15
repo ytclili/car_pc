@@ -43,10 +43,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           onProfile={onProfile}
         />
         
-        {/* 面包屑 + 主内容区域 */}
+        {/* 主内容区域 */}
         <Content className="content-area">
           <Breadcrumbs />
-          {children}
+          <div className="main-content-wrapper">
+            {children}
+          </div>
         </Content>
       </Layout>
     </Layout>
